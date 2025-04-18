@@ -28,10 +28,11 @@ func (cfg *apiConfig) handlerUploadThumbnail(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-
 	fmt.Println("uploading thumbnail for video", videoID, "by user", userID)
 
-	// TODO: implement the upload here
+	const maxMemory = 10 << 20
+
+	r.ParseMultipartForm(maxMemory)
 
 	respondWithJSON(w, http.StatusOK, struct{}{})
 }
